@@ -1,0 +1,53 @@
+﻿@model BuisnessLayer.Employee
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EmployeeName" class="control-label"></label>
+                <input asp-for="EmployeeName" class="form-control" />
+                <span asp-validation-for="EmployeeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeGender" class="control-label"></label>
+                <input asp-for="EmployeeGender" class="form-control" />
+                <span asp-validation-for="EmployeeGender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeDesignation" class="control-label"></label>
+                <input asp-for="EmployeeDesignation" class="form-control" />
+                <span asp-validation-for="EmployeeDesignation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email_id" class="control-label"></label>
+                <input asp-for="Email_id" class="form-control" />
+                <span asp-validation-for="Email_id" class="text-danger"></span>
+            </div>
+            <table>
+                <tr>
+                    <td> state name : </td>
+                    <td> @Html.DropDownList("StateId", new SelectList(Model.states, "StateId", "StateName")) </td>
+                </tr>
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

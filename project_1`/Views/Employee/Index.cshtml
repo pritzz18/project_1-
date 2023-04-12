@@ -1,0 +1,74 @@
+﻿@model BuisnessLayer.SearchModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+    <form asp-controller="Employee" asp-action="Index">
+        <p>
+            search term: <input type="text" asp-for="SearchTerm" />
+            <select class="select-site" asp-for="StateId" asp-items="@(new SelectList(Model.states, "StateId", "StateName"))">
+                <option value="0"> Select State </option>
+            </select>
+            <input type="submit" value="Filter" asp-for="@Model.SearchTerm" />
+        </p>
+    </form>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                EmployeeID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                Designation
+            </th>
+            <th>
+                Email_id
+            </th>
+            <th>
+                State
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.List) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeGender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeDesignation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
